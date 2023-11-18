@@ -1,30 +1,33 @@
 package com.fuctura.biblioteca.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Categoria {
-    private Integer idCategoria;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private String descricao;
+    @OneToMany(mappedBy = "categoria")
     private List<Livro> livros = new ArrayList<>();
 
     public Categoria() {
     }
 
-    public Categoria(Integer idCategoria, String nome, String descricao, List<Livro> livros) {
-        this.idCategoria = idCategoria;
+    public Categoria(Integer id, String nome, String descricao) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.livros = livros;
     }
 
-    public Integer getIdCategoria() {
-        return idCategoria;
+    public Integer getid() {
+        return id;
     }
 
-    public void setIdCategoria(Integer idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setid(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -49,15 +52,5 @@ public class Categoria {
 
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
-    }
-
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "idCategoria=" + idCategoria +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", livros=" + livros +
-                '}';
     }
 }

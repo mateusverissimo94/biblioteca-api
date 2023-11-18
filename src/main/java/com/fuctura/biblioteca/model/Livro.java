@@ -1,29 +1,48 @@
 package com.fuctura.biblioteca.model;
 
+import com.fuctura.biblioteca.enums.Tamanho;
+
+import javax.persistence.*;
+
+@Entity
 public class Livro {
-    private Integer idLivro;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String titulo;
     private String nomeAutor;
     private String texto;
+    private Tamanho tamanho;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     public Livro() {
     }
 
-    public Livro(Integer idLivro, String titulo, String nomeAutor, String texto, Categoria categoria) {
-        this.idLivro = idLivro;
+    public Livro(Integer id, String titulo, String nomeAutor, String texto, Tamanho tamanho, Categoria categoria) {
+        this.id = id;
         this.titulo = titulo;
         this.nomeAutor = nomeAutor;
         this.texto = texto;
+        this.tamanho = tamanho;
         this.categoria = categoria;
     }
 
-    public Integer getIdLivro() {
-        return idLivro;
+    public Tamanho getTamanho() {
+        return tamanho;
     }
 
-    public void setIdLivro(Integer idLivro) {
-        this.idLivro = idLivro;
+    public void setTamanho(Tamanho tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public Integer getid() {
+        return id;
+    }
+
+    public void setid(Integer id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -56,16 +75,5 @@ public class Livro {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-    }
-
-    @Override
-    public String toString() {
-        return "Livro{" +
-                "idLivro=" + idLivro +
-                ", titulo='" + titulo + '\'' +
-                ", nomeAutor='" + nomeAutor + '\'' +
-                ", texto='" + texto + '\'' +
-                ", categoria=" + categoria +
-                '}';
     }
 }
