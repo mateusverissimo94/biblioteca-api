@@ -1,8 +1,11 @@
 package com.fuctura.biblioteca.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class StandardError {
+    @JsonFormat(pattern = "HH:mm - dd/MM/yyyy")
     private LocalDateTime timeStemp;
     private Integer status;
     private String mensagem;
