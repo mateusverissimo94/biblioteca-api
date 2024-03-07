@@ -38,7 +38,7 @@ public class CategoriaService {
     }
 
     public Categoria save(CategoriaDTO objDTO) {
-        buscarPorNome(objDTO);
+        findByNome(objDTO);
         objDTO.setid(null);
         return categoriaRepository.save(modelMapper.map(objDTO, Categoria.class));
     }
@@ -56,10 +56,17 @@ public class CategoriaService {
         categoriaRepository.deleteById(id);
     }
 
-    public void buscarPorNome(CategoriaDTO categoriaDTO){
+    public void findByNome(CategoriaDTO categoriaDTO){
         Optional<Categoria> cat = categoriaRepository.findByNome(categoriaDTO.getNome());
         if (cat.isPresent() && cat.get().getNome().equals(categoriaDTO.getNome())){
             throw new IllegalArgumentException("Já existe uma categoria com esse nome " + categoriaDTO.getNome());
+        }
+    }
+
+    public void BuscarPorNome(String nome) {
+        Optional<Categoria> cat = categoriaRepository.findByNomeContainingIgnoreCase(nome);
+        if (cat.isEmpty()){
+            throw new ObejectNotFoundException("Categoria não encontrada");
         }
     }
 }

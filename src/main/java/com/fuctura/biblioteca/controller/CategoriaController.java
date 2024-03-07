@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {

@@ -19,7 +19,6 @@ public class LivroDTO {
     @Length(min = 5, max = 50, message = "O campo NOME DO AUTOR deve conter entre 5 e 50 caracteres")
     private String nomeAutor;
     @NotEmpty(message = "O campo TEXTO é requerido")
-    @Length(min = 50, max = 200, message = "O campo TEXTO deve conter entre 5 e 50 caracteres")
     private String texto;
     private Tamanho tamanho;
     private Categoria categoria;
